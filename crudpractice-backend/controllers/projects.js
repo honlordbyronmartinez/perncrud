@@ -1,3 +1,5 @@
+// PROJECTS
+
 const getTableData = (req, res, db) => {
     db.select('*').from('projects')
       .then(items => {
