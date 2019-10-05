@@ -7,6 +7,8 @@ import Header from './Components/menus/menu'
 import { CSVLink } from "react-csv"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import modules from './modules';
+
 class App extends Component {
   state = {
     items: []
