@@ -32,6 +32,7 @@ var db = require('knex')({
 // Controllers - aka, the db queries
 // const main = require('./controllers/main')
 const crm = require('./controllers/crm')
+const proj = require('./controllers/projects')
 
 // App
 const app = express()
@@ -53,11 +54,19 @@ app.use(bodyParser.json())
 app.use(morgan('combined')) // use 'tiny' or 'combined'
 
 // App Routes - Auth
-app.get('/', (req, res) => res.send('hello world'))
+app.get('/', (req, res) => res.send('Welcome to pipelineVFX'))
+
+// crm
 app.get('/crm', (req, res) => crm.getTableData(req, res, db))
 app.post('/crm', (req, res) => crm.postTableData(req, res, db))
 app.put('/crm', (req, res) => crm.putTableData(req, res, db))
 app.delete('/crm', (req, res) => crm.deleteTableData(req, res, db))
+
+// projects
+app.get('/proj', (req, res) => proj.getTableData(req, res, db))
+app.post('/proj', (req, res) => proj.postTableData(req, res, db))
+app.put('/proj', (req, res) => proj.putTableData(req, res, db))
+app.delete('/proj', (req, res) => proj.deleteTableData(req, res, db))
 
 // App Server Connection
 app.listen(process.env.PORT || 3000, () => {

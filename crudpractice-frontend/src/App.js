@@ -1,84 +1,41 @@
-
-import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import React, { Component } from 'react';
+import { useState } from 'react';
+import { Container, Row, Col } from 'reactstrap' ;
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import logo from './logo.svg';
+import './App.css';
 import ModalForm from './Components/Modals/Modal'
 import DataTable from './Components/Tables/DataTable'
 import Header from './Components/menus/menu'
 import { CSVLink } from "react-csv"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import modules from './modules';
+import modules from './modules'; // All the parent knows is that it has modules ...
 
-class App extends Component {
-  state = {
-    items: []
-  }
+function App() {
+  const [currentTab, setCurrentTab] = useState('dashboard');
 
-  getItems(){
-    fetch('http://localhost:3000/crm')
-      .then(response => response.json())
-      .then(items => this.setState({items}))
-      .catch(err => console.log(err))
-  }
-
-  addItemToState = (item) => {
-    this.setState(prevState => ({
-      items: [...prevState.items, item]
-    }))
-  }
-
-  updateState = (item) => {
-    const itemIndex = this.state.items.findIndex(data => data.id_crm === item.id_crm)
-    const newArray = [
-    // destructure all items from beginning to the indexed item
-      ...this.state.items.slice(0, itemIndex),
-    // add the updated item to the array
-      item,
-    // add the rest of the items to the array from the index after the replaced item
-      ...this.state.items.slice(itemIndex + 1)
-    ]
-    this.setState({ items: newArray })
-  }
-
-  deleteItemFromState = (id_crm) => {
-    const updatedItems = this.state.items.filter(item => item.id_crm !== id_crm)
-    this.setState({ items: updatedItems })
-  }
-
-  componentDidMount(){
-    this.getItems()
-  }
-
-  render() {
-    return (
-      <Container className="App">
-        <Row><Col><Header /></Col></Row>
-        <Row>
-          <Col>
-            <h1 style={{margin: "20px 0"}}>CRM</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DataTable items={this.state.items} updateState={this.updateState} deleteItemFromState={this.deleteItemFromState} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <CSVLink
-              filename={"db.csv"}
-              color="primary"
-              style={{float: "left", marginRight: "10px"}}
-              className="btn btn-primary"
-              data={this.state.items}>
-              Download CSV
-            </CSVLink>
-            <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
-          </Col>
-        </Row>
-      </Container>
-    )
-  }
+  return (
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <ul className="App-nav">
+              {modules.map(module => ( // with a name, and routes
+                  <li key={module.name} className={currentTab === module.name ? 'active' : ''}>
+                    <Link to={module.routeProps.path} onClick={() => setCurrentTab(module.name)}>{module.name}</Link>
+                  </li>
+              ))}
+            </ul>
+          </header>
+          <div className="App-content">
+            {modules.map(module => (
+              <Route {...module.routeProps} key={module.name} />
+            ))}
+          </div>
+        </div>
+      </Router>
+  );
 }
 
 export default App
