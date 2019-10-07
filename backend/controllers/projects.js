@@ -24,8 +24,8 @@ const getTableData = (req, res, db) => {
   }
   
   const putTableData = (req, res, db) => {
-    const { id_project, code, projectname, status, clientname, notes } = req.body
-    db('projects').where({iid_project}).update({code, projectname, status, clientname, notes})
+    const { id_projects, code, projectname, status, clientname, notes } = req.body
+    db('projects').where({id_projects}).update({code, projectname, status, clientname, notes})
       .returning('*')
       .then(item => {
         res.json(item)
@@ -34,7 +34,7 @@ const getTableData = (req, res, db) => {
   }
   
   const deleteTableData = (req, res, db) => {
-    const { id_project } = req.body
+    const { id_projects } = req.body
     db('projects').where({id}).del()
       .then(() => {
         res.json({delete: 'true'})
