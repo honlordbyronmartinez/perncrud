@@ -1,7 +1,7 @@
 {
-  "name": "crudPractice2-api",
+  "name": "pipelinevfx-api",
   "version": "1.0.0",
-  "description": "Practicing crud",
+  "description": "VFX Pipeline ERP System",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
