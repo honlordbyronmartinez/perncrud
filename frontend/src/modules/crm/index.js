@@ -1,8 +1,8 @@
 import React, { Component } from 'react' ;
 import { Container, Row, Col } from 'reactstrap' ;
-import ModalForm from '../../Components/Modals/Modal' ;
-import DataTable from '../../Components/Tables/DataTable' ;
-import Header from '../../Components/menus/menu' ;
+import ModalForm from './Components/Modals/Modal' ;
+import DataTable from './Components/Tables/DataTable' ;
+import Header from './Components/menus/menu' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
@@ -49,7 +49,6 @@ class crm extends Component {
       render() {
         return (
           <Container className="App">
-            <Row><Col><Header /></Col></Row>
             <Row>
               <Col>
                 <h1 style={{margin: "20px 0"}}>CRM</h1>
@@ -85,3 +84,6 @@ export default {
     },
     name: 'CRM',
 }
+
+
+/*<Row><Col><Header /></Col></Row> */

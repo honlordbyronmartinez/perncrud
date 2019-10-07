@@ -1,13 +1,14 @@
+// import { Container, Row, Col } from 'reactstrap' ;
+// import ModalForm from './Components/Modals/Modal'
+// import DataTable from './Components/Tables/DataTable'
+// import Header from './Components/menus/menu'
+// import { CSVLink } from "react-csv"
+
 import React, { Component } from 'react';
 import { useState } from 'react';
-import { Container, Row, Col } from 'reactstrap' ;
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import ModalForm from './Components/Modals/Modal'
-import DataTable from './Components/Tables/DataTable'
-import Header from './Components/menus/menu'
-import { CSVLink } from "react-csv"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import modules from './modules'; // All the parent knows is that it has modules ...
@@ -19,7 +20,6 @@ function App() {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
             <ul className="App-nav">
               {modules.map(module => ( // with a name, and routes
                   <li key={module.name} className={currentTab === module.name ? 'active' : ''}>

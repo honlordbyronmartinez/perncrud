@@ -1,18 +1,18 @@
 import React, { Component } from 'react' ;
 import { Container, Row, Col } from 'reactstrap' ;
-import ModalForm from '../../Components/Modals/Modal' ;
-import DataTable from '../../Components/Tables/DataTable' ;
-import Header from '../../Components/menus/menu' ;
+import ModalForm from './Components/Modals/Modal' ;
+import DataTable from './Components/Tables/DataTable' ;
+import Header from './Components/menus/menu' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
-class projects extends Component {
+class crm extends Component {
     state = {
         items: []
       }
     
       getItems(){
-        fetch('http://localhost:3000/proj')
+        fetch('http://localhost:3000/crm')
           .then(response => response.json())
           .then(items => this.setState({items}))
           .catch(err => console.log(err))
@@ -25,7 +25,7 @@ class projects extends Component {
       }
     
       updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id_project === item.id_project)
+        const itemIndex = this.state.items.findIndex(data => data.id_crm === item.id_crm)
         const newArray = [
         // destructure all items from beginning to the indexed item
           ...this.state.items.slice(0, itemIndex),
@@ -37,8 +37,8 @@ class projects extends Component {
         this.setState({ items: newArray })
       }
     
-      deleteItemFromState = (id_project) => {
-        const updatedItems = this.state.items.filter(item => item.id_project !== id_project)
+      deleteItemFromState = (id_crm) => {
+        const updatedItems = this.state.items.filter(item => item.id_crm !== id_crm)
         this.setState({ items: updatedItems })
       }
     
@@ -49,10 +49,9 @@ class projects extends Component {
       render() {
         return (
           <Container className="App">
-            <Row><Col><Header /></Col></Row>
             <Row>
               <Col>
-                <h1 style={{margin: "20px 0"}}>Projects</h1>
+                <h1 style={{margin: "20px 0"}}>CRM</h1>
               </Col>
             </Row>
             <Row>
@@ -80,8 +79,11 @@ class projects extends Component {
 
 export default {
     routeProps: {
-        path: '/projects',
-        component: projects
+        path: '/crm',
+        component: crm
     },
-    name: 'Projects',
+    name: 'CRM',
 }
+
+
+/*<Row><Col><Header /></Col></Row> */
