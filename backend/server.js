@@ -30,7 +30,6 @@ var db = require('knex')({
 });
 
 // Controllers - aka, the db queries
-// const main = require('./controllers/main')
 const bids = require('./controllers/bids')
 const crm = require('./controllers/crm')
 const proj = require('./controllers/projects')

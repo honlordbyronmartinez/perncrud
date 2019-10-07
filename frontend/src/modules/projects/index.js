@@ -25,7 +25,7 @@ class projects extends Component {
       }
     
       updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id_project === item.id_project)
+        const itemIndex = this.state.items.findIndex(data => data.id_projects === item.id_projects)
         const newArray = [
         // destructure all items from beginning to the indexed item
           ...this.state.items.slice(0, itemIndex),
@@ -37,8 +37,8 @@ class projects extends Component {
         this.setState({ items: newArray })
       }
     
-      deleteItemFromState = (id_project) => {
-        const updatedItems = this.state.items.filter(item => item.id_project !== id_project)
+      deleteItemFromState = (id_projects) => {
+        const updatedItems = this.state.items.filter(item => item.id_projects !== id_projects)
         this.setState({ items: updatedItems })
       }
     
@@ -84,5 +84,3 @@ export default {
     },
     name: 'Projects',
 }
-
-/*<Row><Col><Header /></Col></Row> */

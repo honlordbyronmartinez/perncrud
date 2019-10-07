@@ -2,7 +2,6 @@ import React, { Component } from 'react' ;
 import { Container, Row, Col } from 'reactstrap' ;
 import ModalForm from './Components/Modals/Modal' ;
 import DataTable from './Components/Tables/DataTable' ;
-import Header from './Components/menus/menu' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
@@ -84,6 +83,3 @@ export default {
     },
     name: 'Bids',
 }
-
-
-/*<Row><Col><Header /></Col></Row> */
