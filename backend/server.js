@@ -25,12 +25,13 @@ var db = require('knex')({
     host : 'localhost',
     user : '',
     password : '',
-    database : 'pipeline'
+    database : 'pipelinevfx'
   }
 });
 
 // Controllers - aka, the db queries
 // const main = require('./controllers/main')
+const bids = require('./controllers/bids')
 const crm = require('./controllers/crm')
 const proj = require('./controllers/projects')
 
@@ -55,6 +56,12 @@ app.use(morgan('combined')) // use 'tiny' or 'combined'
 
 // App Routes - Auth
 app.get('/', (req, res) => res.send('Welcome to pipelineVFX'))
+
+// bids
+app.get('/bids', (req, res) => bids.getTableData(req, res, db))
+app.post('/bids', (req, res) => bids.postTableData(req, res, db))
+app.put('/bids', (req, res) => bids.putTableData(req, res, db))
+app.delete('/bids', (req, res) => bids.deleteTableData(req, res, db))
 
 // crm
 app.get('/crm', (req, res) => crm.getTableData(req, res, db))

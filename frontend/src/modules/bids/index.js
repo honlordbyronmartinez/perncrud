@@ -6,13 +6,13 @@ import Header from './Components/menus/menu' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
-class crm extends Component {
+class bids extends Component {
     state = {
         items: []
       }
     
       getItems(){
-        fetch('http://localhost:3000/crm')
+        fetch('http://localhost:3000/bids')
           .then(response => response.json())
           .then(items => this.setState({items}))
           .catch(err => console.log(err))
@@ -25,7 +25,7 @@ class crm extends Component {
       }
     
       updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id_crm === item.id_crm)
+        const itemIndex = this.state.items.findIndex(data => data.id_bids === item.id_bids)
         const newArray = [
         // destructure all items from beginning to the indexed item
           ...this.state.items.slice(0, itemIndex),
@@ -37,8 +37,8 @@ class crm extends Component {
         this.setState({ items: newArray })
       }
     
-      deleteItemFromState = (id_crm) => {
-        const updatedItems = this.state.items.filter(item => item.id_crm !== id_crm)
+      deleteItemFromState = (id_bids) => {
+        const updatedItems = this.state.items.filter(item => item.id_bids !== id_bids)
         this.setState({ items: updatedItems })
       }
     
@@ -51,7 +51,7 @@ class crm extends Component {
           <Container className="App">
             <Row>
               <Col>
-                <h1 style={{margin: "20px 0"}}>CRM</h1>
+                <h1 style={{margin: "20px 0"}}>BIDS</h1>
               </Col>
             </Row>
             <Row>
@@ -79,10 +79,10 @@ class crm extends Component {
 
 export default {
     routeProps: {
-        path: '/crm',
-        component: crm
+        path: '/bids',
+        component: bids
     },
-    name: 'CRM',
+    name: 'Bids',
 }
 
 

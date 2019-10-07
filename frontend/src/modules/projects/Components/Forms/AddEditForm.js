@@ -85,23 +85,23 @@ class AddEditForm extends React.Component {
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
           <Label for="code">Code</Label>
-          <Input type="text" name="code" id="code" onChange={this.onChange} value={this.state.first === null ? '' : this.state.first} />
+          <Input type="text" name="code" id="code" onChange={this.onChange} value={this.state.code === null ? '' : this.state.code} />
         </FormGroup>
         <FormGroup>
           <Label for="projectname">Project Name</Label>
-          <Input type="text" name="projectname" id="projectname" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last}  />
+          <Input type="text" name="projectname" id="projectname" onChange={this.onChange} value={this.state.projectname === null ? '' : this.state.projectname}  />
         </FormGroup>
         <FormGroup>
           <Label for="clientname">Client Name</Label>
-          <Input type="clientname" name="clientname" id="clientname" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}  />
+          <Input type="clientname" name="clientname" id="clientname" onChange={this.onChange} value={this.state.clientname === null ? '' : this.state.clientname}  />
         </FormGroup>
         <FormGroup>
           <Label for="status">Status</Label>
-          <Input type="text" name="status" id="status" onChange={this.onChange} value={this.state.phone === null ? '' : this.state.phone}  placeholder="ex. 555-555-5555" />
+          <Input type="text" name="status" id="status" onChange={this.onChange} value={this.state.status === null ? '' : this.state.status}  />
         </FormGroup>
         <FormGroup>
           <Label for="notes">Notes</Label>
-          <Input type="text" name="notes" id="notes" onChange={this.onChange} value={this.state.location === null ? '' : this.state.location}  placeholder="City, State" />
+          <Input type="text" name="notes" id="notes" onChange={this.onChange} value={this.state.notes === null ? '' : this.state.notes}  />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
