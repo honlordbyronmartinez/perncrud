@@ -29,11 +29,6 @@ var db = require('knex')({
   }
 });
 
-// Controllers - aka, the db queries
-const bids = require('./controllers/bids')
-const crm = require('./controllers/crm')
-const proj = require('./controllers/projects')
-
 // App
 const app = express()
 
@@ -53,14 +48,14 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(morgan('combined')) // use 'tiny' or 'combined'
 
+// Controllers - aka, the db queries
+const crm = require('./controllers/crm')
+const bids = require('./controllers/bids')
+const proj = require('./controllers/projects')
+const epis = require('./controllers/episodes')
+
 // App Routes - Auth
 app.get('/', (req, res) => res.send('Welcome to pipelineVFX'))
-
-// bids
-app.get('/bids', (req, res) => bids.getTableData(req, res, db))
-app.post('/bids', (req, res) => bids.postTableData(req, res, db))
-app.put('/bids', (req, res) => bids.putTableData(req, res, db))
-app.delete('/bids', (req, res) => bids.deleteTableData(req, res, db))
 
 // crm
 app.get('/crm', (req, res) => crm.getTableData(req, res, db))
@@ -68,11 +63,23 @@ app.post('/crm', (req, res) => crm.postTableData(req, res, db))
 app.put('/crm', (req, res) => crm.putTableData(req, res, db))
 app.delete('/crm', (req, res) => crm.deleteTableData(req, res, db))
 
+// bids
+app.get('/bids', (req, res) => bids.getTableData(req, res, db))
+app.post('/bids', (req, res) => bids.postTableData(req, res, db))
+app.put('/bids', (req, res) => bids.putTableData(req, res, db))
+app.delete('/bids', (req, res) => bids.deleteTableData(req, res, db))
+
 // projects
 app.get('/proj', (req, res) => proj.getTableData(req, res, db))
 app.post('/proj', (req, res) => proj.postTableData(req, res, db))
 app.put('/proj', (req, res) => proj.putTableData(req, res, db))
 app.delete('/proj', (req, res) => proj.deleteTableData(req, res, db))
+
+// episodes
+app.get('/epis', (req, res) => epis.getTableData(req, res, db))
+app.post('/epis', (req, res) => epis.postTableData(req, res, db))
+app.put('/epis', (req, res) => epis.putTableData(req, res, db))
+app.delete('/epis', (req, res) => epis.deleteTableData(req, res, db))
 
 // App Server Connection
 app.listen(process.env.PORT || 3000, () => {
