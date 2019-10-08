@@ -53,6 +53,8 @@ const crm = require('./controllers/crm')
 const bids = require('./controllers/bids')
 const proj = require('./controllers/projects')
 const epis = require('./controllers/episodes')
+const shots = require('./controllers/shots')
+const serv = require('./controllers/services')
 
 // App Routes - Auth
 app.get('/', (req, res) => res.send('Welcome to pipelineVFX'))
@@ -80,6 +82,18 @@ app.get('/epis', (req, res) => epis.getTableData(req, res, db))
 app.post('/epis', (req, res) => epis.postTableData(req, res, db))
 app.put('/epis', (req, res) => epis.putTableData(req, res, db))
 app.delete('/epis', (req, res) => epis.deleteTableData(req, res, db))
+
+// shots
+app.get('/shots', (req, res) => shots.getTableData(req, res, db))
+app.post('/shots', (req, res) => shots.postTableData(req, res, db))
+app.put('/shots', (req, res) => shots.putTableData(req, res, db))
+app.delete('/shots', (req, res) => shots.deleteTableData(req, res, db))
+
+// services
+app.get('/serv', (req, res) => serv.getTableData(req, res, db))
+app.post('/serv', (req, res) => serv.postTableData(req, res, db))
+app.put('/serv', (req, res) => serv.putTableData(req, res, db))
+app.delete('/serv', (req, res) => serv.deleteTableData(req, res, db))
 
 // App Server Connection
 app.listen(process.env.PORT || 3000, () => {

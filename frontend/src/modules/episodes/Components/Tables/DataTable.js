@@ -7,7 +7,7 @@ class DataTable extends Component {
   deleteItem = id_episodes => {
     let confirmDelete = window.confirm('Delete item forever?')
     if(confirmDelete){
-      fetch('http://localhost:3000/episodes', {
+      fetch('http://localhost:3000/epis', {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ class DataTable extends Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Number</th>
+              <th>Num</th>
               <th>Name</th>
               <th>Client</th>
               <th>Status</th>

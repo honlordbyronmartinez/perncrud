@@ -4,9 +4,9 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddEditForm extends React.Component {
   state = {
-    id_bids: 0,
-    code: '',
-    bidname: '',
+    id_episodes: 0,
+    episodenum: '',
+    episodename: '',
     clientname: '',
     status: '',
     notes: ''
@@ -18,14 +18,14 @@ class AddEditForm extends React.Component {
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/epis', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        code: this.state.code,
-        bidname: this.state.bidname,
+        episodenum: this.state.episodenum,
+        episodename: this.state.episodename,
         clientname: this.state.clientname,
         status: this.state.status,
         notes: this.state.notes
@@ -45,15 +45,15 @@ class AddEditForm extends React.Component {
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/epis', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id_bids: this.state.id_bids,
-        code: this.state.code,
-        bidname: this.state.bidname,
+        id_episodes: this.state.id_episodes,
+        episodenum: this.state.episodenum,
+        episodename: this.state.episodename,
         clientname: this.state.clientname,
         status: this.state.status,
         notes: this.state.notes
@@ -75,8 +75,8 @@ class AddEditForm extends React.Component {
   componentDidMount(){
     // if item exists, populate the state with proper data
     if(this.props.item){
-      const { id_bids, code, bidname, clientname, status, notes } = this.props.item
-      this.setState({ id_bids, code, bidname, clientname, status, notes })
+      const { id_episodes, episodenum, episodename, clientname, status, notes } = this.props.item
+      this.setState({ id_episodes, episodenum, episodename, clientname, status, notes })
     }
   }
 
@@ -84,12 +84,12 @@ class AddEditForm extends React.Component {
     return (
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
-          <Label for="code">Code</Label>
-          <Input type="text" name="code" id="code" onChange={this.onChange} value={this.state.code === null ? '' : this.state.code} />
+          <Label for="episodenum">Num</Label>
+          <Input type="text" name="episodenum" id="episodenum" onChange={this.onChange} value={this.state.episodenum === null ? '' : this.state.episodenum} />
         </FormGroup>
         <FormGroup>
-          <Label for="bidname">Bid Name</Label>
-          <Input type="text" name="bidname" id="bidname" onChange={this.onChange} value={this.state.bidname === null ? '' : this.state.bidname}  />
+          <Label for="episodename">Episode</Label>
+          <Input type="text" name="episodename" id="episodename" onChange={this.onChange} value={this.state.episodename === null ? '' : this.state.episodename}  />
         </FormGroup>
         <FormGroup>
           <Label for="clientname">Client Name</Label>

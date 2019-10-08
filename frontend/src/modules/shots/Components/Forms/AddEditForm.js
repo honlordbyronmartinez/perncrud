@@ -2,14 +2,18 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
+// id_shots,  shotname, projectname, episodename, clientname, status, notes, keywords
+
 class AddEditForm extends React.Component {
   state = {
-    id_bids: 0,
-    code: '',
-    bidname: '',
+    id_shots: 0,
+    shotname: '',
+    projectname: '',
+    episodename: '',
     clientname: '',
     status: '',
-    notes: ''
+    notes: '',
+    keywords: ''
   }
 
   onChange = e => {
@@ -18,17 +22,19 @@ class AddEditForm extends React.Component {
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/shots', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        code: this.state.code,
-        bidname: this.state.bidname,
+        shotname: this.state.shotname,
+        projectname: this.state.projectname,
+        episodename: this.state.episodename,
         clientname: this.state.clientname,
         status: this.state.status,
-        notes: this.state.notes
+        notes: this.state.notes,
+        keywords: this.state.keywords
       })
     })
       .then(response => response.json())
@@ -45,18 +51,20 @@ class AddEditForm extends React.Component {
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/shots', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id_bids: this.state.id_bids,
-        code: this.state.code,
-        bidname: this.state.bidname,
+        id_shots: this.state.id_shots,
+        shotname: this.state.shotname,
+        projectname: this.state.projectname,
+        episodename: this.state.episodename,
         clientname: this.state.clientname,
         status: this.state.status,
-        notes: this.state.notes
+        notes: this.state.notes,
+        keywords: this.state.keywords
       })
     })
       .then(response => response.json())
@@ -75,8 +83,8 @@ class AddEditForm extends React.Component {
   componentDidMount(){
     // if item exists, populate the state with proper data
     if(this.props.item){
-      const { id_bids, code, bidname, clientname, status, notes } = this.props.item
-      this.setState({ id_bids, code, bidname, clientname, status, notes })
+      const { id_shots, shotname, projectname, episodename, clientname, status, notes, keywords } = this.props.item
+      this.setState({ id_shots, shotname, projectname, episodename, clientname, status, notes, keywords })
     }
   }
 
@@ -84,12 +92,16 @@ class AddEditForm extends React.Component {
     return (
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
-          <Label for="code">Code</Label>
-          <Input type="text" name="code" id="code" onChange={this.onChange} value={this.state.code === null ? '' : this.state.code} />
+          <Label for="code">Shot</Label>
+          <Input type="text" name="shotname" id="shotname" onChange={this.onChange} value={this.state.shotname === null ? '' : this.state.shotname} />
         </FormGroup>
         <FormGroup>
-          <Label for="bidname">Bid Name</Label>
-          <Input type="text" name="bidname" id="bidname" onChange={this.onChange} value={this.state.bidname === null ? '' : this.state.bidname}  />
+          <Label for="projectname">Project</Label>
+          <Input type="text" name="projectname" id="projectname" onChange={this.onChange} value={this.state.projectname === null ? '' : this.state.projectname}  />
+        </FormGroup>
+        <FormGroup>
+          <Label for="episodename">Episode</Label>
+          <Input type="text" name="episodename" id="episodename" onChange={this.onChange} value={this.state.episodename === null ? '' : this.state.episodename}  />
         </FormGroup>
         <FormGroup>
           <Label for="clientname">Client Name</Label>
@@ -102,6 +114,10 @@ class AddEditForm extends React.Component {
         <FormGroup>
           <Label for="notes">Notes</Label>
           <Input type="text" name="notes" id="notes" onChange={this.onChange} value={this.state.notes === null ? '' : this.state.notes}  />
+        </FormGroup>
+        <FormGroup>
+          <Label for="keywords">Keywords</Label>
+          <Input type="text" name="keywords" id="keywords" onChange={this.onChange} value={this.state.keywords === null ? '' : this.state.keywords}  />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
