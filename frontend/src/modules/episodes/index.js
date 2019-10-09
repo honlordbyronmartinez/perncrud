@@ -61,7 +61,7 @@ class episodes extends Component {
             <Row>
               <Col>
                 <CSVLink
-                  filename={"db.csv"}
+                  filename={"pipelinevfx_episodes.csv"}
                   color="primary"
                   style={{float: "left", marginRight: "10px"}}
                   className="btn btn-primary"

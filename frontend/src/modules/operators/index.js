@@ -5,13 +5,13 @@ import DataTable from './Components/Tables/DataTable' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
-class bids extends Component {
+class operators extends Component {
     state = {
         items: []
       }
     
       getItems(){
-        fetch('http://localhost:3000/bids')
+        fetch('http://localhost:3000/oper')
           .then(response => response.json())
           .then(items => this.setState({items}))
           .catch(err => console.log(err))
@@ -24,7 +24,7 @@ class bids extends Component {
       }
     
       updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id_bids === item.id_bids)
+        const itemIndex = this.state.items.findIndex(data => data.id_operators === item.id_operators)
         const newArray = [
         // destructure all items from beginning to the indexed item
           ...this.state.items.slice(0, itemIndex),
@@ -36,8 +36,8 @@ class bids extends Component {
         this.setState({ items: newArray })
       }
     
-      deleteItemFromState = (id_bids) => {
-        const updatedItems = this.state.items.filter(item => item.id_bids !== id_bids)
+      deleteItemFromState = (id_operators) => {
+        const updatedItems = this.state.items.filter(item => item.id_operators !== id_operators)
         this.setState({ items: updatedItems })
       }
     
@@ -50,7 +50,7 @@ class bids extends Component {
           <Container className="App">
             <Row>
               <Col>
-                <h1 style={{margin: "20px 0"}}>BIDS</h1>
+                <h1 style={{margin: "20px 0"}}>Operators</h1>
               </Col>
             </Row>
             <Row>
@@ -61,7 +61,7 @@ class bids extends Component {
             <Row>
               <Col>
                 <CSVLink
-                  filename={"db.csv"}
+                  filename={"pipelinevfx_operators.csv"}
                   color="primary"
                   style={{float: "left", marginRight: "10px"}}
                   className="btn btn-primary"
@@ -78,8 +78,8 @@ class bids extends Component {
 
 export default {
     routeProps: {
-        path: '/bids',
-        component: bids
+        path: '/operators',
+        component: operators
     },
-    name: 'Bids',
+    name: 'Operators',
 }

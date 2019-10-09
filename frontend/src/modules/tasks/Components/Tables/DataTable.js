@@ -4,21 +4,21 @@ import ModalForm from '../Modals/Modal'
 
 class DataTable extends Component {
 
-  deleteItem = id_bids => {
+  deleteItem = id_tasks => {
     let confirmDelete = window.confirm('Delete item forever?')
     if(confirmDelete){
-      fetch('http://localhost:3000/bids', {
+      fetch('http://localhost:3000/task', {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id_bids
+        id_tasks
       })
     })
       .then(response => response.json())
       .then(item => {
-        this.props.deleteItemFromState(id_bids)
+        this.props.deleteItemFromState(id_tasks)
       })
       .catch(err => console.log(err))
     }
@@ -29,10 +29,14 @@ class DataTable extends Component {
     let items = this.props && this.props.items.length > 0 ?
       this.props.items.map(item => {
         return (
-          <tr key={item.id_bids}>
-            <th scope="row">{item.id_bids}</th>
-            <td>{item.code}</td>
-            <td>{item.bidname}</td>
+          <tr key={item.id_tasks}>
+            <th scope="row">{item.id_tasks}</th>
+            <td>{item.taskname}</td>
+            <td>{item.projectname}</td>
+            <td>{item.episodename}</td>
+            <td>{item.shotname}</td>
+            <td>{item.servicename}</td>
+            <td>{item.operatorname}</td>
             <td>{item.clientname}</td>
             <td>{item.status}</td>
             <td>{item.notes}</td>
@@ -40,7 +44,7 @@ class DataTable extends Component {
               <div style={{width:"110px"}}>
                 <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}/>
                 {' '}
-                <Button color="danger" onClick={() => this.deleteItem(item.id_bids)}>Del</Button>
+                <Button color="danger" onClick={() => this.deleteItem(item.id_tasks)}>Del</Button>
               </div>
             </td>
           </tr>
@@ -52,8 +56,12 @@ class DataTable extends Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Code</th>
-              <th>Bid Name</th>
+              <th>Task</th>
+              <th>Project</th>
+              <th>Episode</th>
+              <th>Shot</th>
+              <th>Service</th>
+              <th>Operator</th>
               <th>Client</th>
               <th>Status</th>
               <th>Notes</th>

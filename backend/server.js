@@ -53,8 +53,10 @@ const crm = require('./controllers/crm')
 const bids = require('./controllers/bids')
 const proj = require('./controllers/projects')
 const epis = require('./controllers/episodes')
-const shots = require('./controllers/shots')
+const shot = require('./controllers/shots')
 const serv = require('./controllers/services')
+const oper = require('./controllers/operators')
+const task = require('./controllers/tasks')
 
 // App Routes - Auth
 app.get('/', (req, res) => res.send('Welcome to pipelineVFX'))
@@ -84,16 +86,28 @@ app.put('/epis', (req, res) => epis.putTableData(req, res, db))
 app.delete('/epis', (req, res) => epis.deleteTableData(req, res, db))
 
 // shots
-app.get('/shots', (req, res) => shots.getTableData(req, res, db))
-app.post('/shots', (req, res) => shots.postTableData(req, res, db))
-app.put('/shots', (req, res) => shots.putTableData(req, res, db))
-app.delete('/shots', (req, res) => shots.deleteTableData(req, res, db))
+app.get('/shots', (req, res) => shot.getTableData(req, res, db))
+app.post('/shots', (req, res) => shot.postTableData(req, res, db))
+app.put('/shots', (req, res) => shot.putTableData(req, res, db))
+app.delete('/shots', (req, res) => shot.deleteTableData(req, res, db))
 
 // services
 app.get('/serv', (req, res) => serv.getTableData(req, res, db))
 app.post('/serv', (req, res) => serv.postTableData(req, res, db))
 app.put('/serv', (req, res) => serv.putTableData(req, res, db))
 app.delete('/serv', (req, res) => serv.deleteTableData(req, res, db))
+
+// operators
+app.get('/oper', (req, res) => oper.getTableData(req, res, db))
+app.post('/oper', (req, res) => oper.postTableData(req, res, db))
+app.put('/oper', (req, res) => oper.putTableData(req, res, db))
+app.delete('/oper', (req, res) => oper.deleteTableData(req, res, db))
+
+// tasks
+app.get('/task', (req, res) => task.getTableData(req, res, db))
+app.post('/task', (req, res) => task.postTableData(req, res, db))
+app.put('/task', (req, res) => task.putTableData(req, res, db))
+app.delete('/task', (req, res) => task.deleteTableData(req, res, db))
 
 // App Server Connection
 app.listen(process.env.PORT || 3000, () => {

@@ -4,9 +4,12 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddEditForm extends React.Component {
   state = {
-    id_bids: 0,
-    code: '',
-    bidname: '',
+    id_operators: 0,
+    operatorname: '',
+    projectname: '',
+    episodename: '',
+    shotname: '',
+    servicename: '',
     clientname: '',
     status: '',
     notes: ''
@@ -18,14 +21,17 @@ class AddEditForm extends React.Component {
 
   submitFormAdd = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/oper', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        code: this.state.code,
-        bidname: this.state.bidname,
+        operatorname: this.state.operatorname,
+        projectname: this.state.projectname,
+        episodename: this.state.episodename,
+        shotname: this.state.shotname,
+        servicename: this.state.servicename,
         clientname: this.state.clientname,
         status: this.state.status,
         notes: this.state.notes
@@ -45,15 +51,18 @@ class AddEditForm extends React.Component {
 
   submitFormEdit = e => {
     e.preventDefault()
-    fetch('http://localhost:3000/bids', {
+    fetch('http://localhost:3000/oper', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id_bids: this.state.id_bids,
-        code: this.state.code,
-        bidname: this.state.bidname,
+        id_operators: this.state.id_operators,
+        operatorname: this.state.operatorname,
+        projectname: this.state.projectname,
+        episodename: this.state.episodename,
+        shotname: this.state.shotname,
+        servicename: this.state.servicename,
         clientname: this.state.clientname,
         status: this.state.status,
         notes: this.state.notes
@@ -75,8 +84,8 @@ class AddEditForm extends React.Component {
   componentDidMount(){
     // if item exists, populate the state with proper data
     if(this.props.item){
-      const { id_bids, code, bidname, clientname, status, notes } = this.props.item
-      this.setState({ id_bids, code, bidname, clientname, status, notes })
+      const { id_operators, operatorname, projectname, episodename, shotname, servicename, clientname, status, notes } = this.props.item
+      this.setState({ id_operators, operatorname, projectname, episodename, shotname, servicename, clientname, status, notes })
     }
   }
 
@@ -84,12 +93,24 @@ class AddEditForm extends React.Component {
     return (
       <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
-          <Label for="code">Code</Label>
-          <Input type="text" name="code" id="code" onChange={this.onChange} value={this.state.code === null ? '' : this.state.code} />
+          <Label for="operatorname">Operator</Label>
+          <Input type="text" name="operatorname" id="operatorname" onChange={this.onChange} value={this.state.operatorname === null ? '' : this.state.operatorname} />
         </FormGroup>
         <FormGroup>
-          <Label for="bidname">Bid Name</Label>
-          <Input type="text" name="bidname" id="bidname" onChange={this.onChange} value={this.state.bidname === null ? '' : this.state.bidname}  />
+          <Label for="projectname">Project</Label>
+          <Input type="text" name="projectname" id="projectname" onChange={this.onChange} value={this.state.projectname === null ? '' : this.state.projectname}  />
+        </FormGroup>
+        <FormGroup>
+          <Label for="episodename">Episode</Label>
+          <Input type="text" name="episodename" id="episodename" onChange={this.onChange} value={this.state.episodename === null ? '' : this.state.episodename}  />
+        </FormGroup>
+        <FormGroup>
+          <Label for="shotname">Shot</Label>
+          <Input type="text" name="shotname" id="shotname" onChange={this.onChange} value={this.state.shotname === null ? '' : this.state.shotname}  />
+        </FormGroup>
+        <FormGroup>
+          <Label for="servicename">Service</Label>
+          <Input type="text" name="servicename" id="servicename" onChange={this.onChange} value={this.state.servicename === null ? '' : this.state.servicename}  />
         </FormGroup>
         <FormGroup>
           <Label for="clientname">Client Name</Label>

@@ -4,6 +4,8 @@ import projects from './projects';
 import episodes from './episodes';
 import shots from './shots';
 import services from './services';
+import operators from './operators';
+import tasks from './tasks';
 
 export default [
     crm,    
@@ -11,5 +13,7 @@ export default [
     projects,
     episodes,
     shots,
-    services
+    services,
+    operators,
+    tasks
 ];
