@@ -51,6 +51,7 @@ app.use(morgan('combined')) // use 'tiny' or 'combined'
 // Controllers - aka, the db queries
 const crm = require('./controllers/crm')
 const bids = require('./controllers/bids')
+const bidsli = require('./controllers/bidsli')
 const proj = require('./controllers/projects')
 const epis = require('./controllers/episodes')
 const shot = require('./controllers/shots')
@@ -72,6 +73,12 @@ app.get('/bids', (req, res) => bids.getTableData(req, res, db))
 app.post('/bids', (req, res) => bids.postTableData(req, res, db))
 app.put('/bids', (req, res) => bids.putTableData(req, res, db))
 app.delete('/bids', (req, res) => bids.deleteTableData(req, res, db))
+
+// bidsli
+app.get('/bidsli', (req, res) => bidsli.getTableData(req, res, db))
+app.post('/bidsli', (req, res) => bidsli.postTableData(req, res, db))
+app.put('/bidsli', (req, res) => bidsli.putTableData(req, res, db))
+app.delete('/bidsli', (req, res) => bidsli.deleteTableData(req, res, db))
 
 // projects
 app.get('/proj', (req, res) => proj.getTableData(req, res, db))
