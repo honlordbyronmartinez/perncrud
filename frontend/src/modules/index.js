@@ -7,6 +7,7 @@ import shots from './shots';
 import services from './services';
 import operators from './operators';
 import tasks from './tasks';
+import charts from './charts';
 
 export default [
     crm,    
@@ -17,5 +18,6 @@ export default [
     shots,
     services,
     operators,
-    tasks
+    tasks,
+    charts
 ];

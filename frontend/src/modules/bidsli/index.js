@@ -1,7 +1,6 @@
 import React, { Component } from 'react' ;
 import { Container, Row, Col } from 'reactstrap' ;
 import ModalForm from './Components/Modals/Modal' ;
-import DataTable from './Components/Tables/DataTable' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 import { AgGridReact } from 'ag-grid-react';
@@ -35,14 +34,6 @@ class bidsli extends Component {
             checkbox: true
           }
         }
-        /*
-        rowData: [{
-          id_bidsli: 2, id_bids: 1, itemname: "Composition", qty: 6, rate: 500, total: 3000, notes: "hello world"
-        }, {
-          id_bidsli: 3, id_bids: 1, itemname: "Rotoscoping", qty: 7, rate: 400, total: 2800, notes: "bye world"
-        }, {
-          id_bidsli: 4, id_bids: 1, itemname: "VFX", qty: 8, rate: 300, total: 2400, notes: "oh world"
-        }]*/
       }
     
       getItems(){
@@ -116,10 +107,9 @@ class bidsli extends Component {
                 </div>
               </Col>
             </Row>
-            <Row><Col><div></div></Col></Row>
             <Row>
               <Col>
-                <div>
+                
                     <CSVLink
                       filename={"pipelinevfx_bidsli.csv"}
                       color="primary"
@@ -129,7 +119,7 @@ class bidsli extends Component {
                       Download CSV
                     </CSVLink>
                     <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
-                </div>
+                     
               </Col>
             </Row>
           </Container>

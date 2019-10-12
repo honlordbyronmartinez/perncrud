@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import modules from './modules'; // All the parent knows is that it has modules ...
 
 function App() {
-  const [currentTab, setCurrentTab] = useState('dashboard');
+  const [currentTab, setCurrentTab] = useState('CRM');
 
   return (
       <Router>

@@ -7,6 +7,7 @@
     "ag-grid-enterprise": "^21.2.2",
     "ag-grid-react": "^21.2.2",
     "bootstrap": "^4.3.1",
+    "dhtmlx-gantt": "^6.2.7",
     "react": "^16.10.1",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-csv": "^1.1.1",
