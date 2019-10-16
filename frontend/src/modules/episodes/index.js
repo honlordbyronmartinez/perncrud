@@ -5,6 +5,8 @@ import DataTable from './Components/Tables/DataTable' ;
 import { CSVLink } from "react-csv" ;
 import 'bootstrap/dist/css/bootstrap.min.css' ;
 
+console.log("INS - 01 Let's get started")
+
 class episodes extends Component {
     state = {
         items: []
@@ -13,7 +15,13 @@ class episodes extends Component {
       getItems(){
         fetch('http://localhost:3000/epis')
           .then(response => response.json())
-          .then(items => this.setState({items}))
+          .then(items => {
+            console.log("INS - AA Pre Fetch getItems")
+            console.log(this.state)
+            this.setState({items})
+            console.log("INS - BB Post Fetch getItems")
+            console.log(this.state)
+          })
           .catch(err => console.log(err))
       }
     
@@ -42,10 +50,16 @@ class episodes extends Component {
       }
     
       componentDidMount(){
+        console.log("INS - 03 Pre this.getItems cDM")
+        console.log(this.state)
         this.getItems()
+        console.log("INS - 04 Post this.getItems cDM")
+        console.log(this.state)
       }
     
       render() {
+        console.log("INS - 02 Enter render")
+        console.log(this.state)
         return (
           <Container className="App">
             <Row>

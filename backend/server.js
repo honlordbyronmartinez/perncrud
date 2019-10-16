@@ -114,6 +114,13 @@ app.post('/task', (req, res) => task.postTableData(req, res, db))
 app.put('/task', (req, res) => task.putTableData(req, res, db))
 app.delete('/task', (req, res) => task.deleteTableData(req, res, db))
 
+// tasks
+const gantt = require('./controllers/gantt')
+app.get('/gantt', (req, res) => gantt.getTableData(req, res, db))
+app.post('/gantt', (req, res) => gantt.postTableData(req, res, db))
+app.put('/gantt', (req, res) => gantt.putTableData(req, res, db))
+app.delete('/gantt', (req, res) => gantt.deleteTableData(req, res, db))
+
 // App Server Connection
 app.listen(process.env.PORT || 3000, () => {
   console.log(`app is running on port ${process.env.PORT || 3000}`)

@@ -4,6 +4,13 @@ import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
 
 export default class Gantt extends Component {
 
+  constructor(props) {
+    super(props);   
+    this.state = {
+      data: []
+    } 
+  }
+
   // instance of gantt.dataProcessor
   dataProcessor = null;
 
@@ -74,11 +81,24 @@ export default class Gantt extends Component {
   }
 
   componentDidMount() {
+
+    console.log(this.props.data) ;
     gantt.config.xml_date = "%Y-%m-%d %H:%i";
-    const { tasks } = this.props;
+    const { data } = this.props;
+    const { links } = this.props;
+    const tasks = {};
+    tasks["data"] = data ;
+    tasks["links"] = links ;
+    //const { tasks } = this.props;
+    console.log("04 GNT Creating Tasks object in cDM") ;
+    console.log(data) ;
+    console.log(links) ;
     gantt.init(this.ganttContainer);
     this.initGanttDataProcessor();
     gantt.parse(tasks);
+    console.log("05 GNT Post gantt.parse CDM complete") ;
+    console.log(this.props) 
+
   }
 
   componentWillUnmount() {
@@ -91,6 +111,8 @@ export default class Gantt extends Component {
   render() {
     const { zoom } = this.props;
     this.setZoom(zoom);
+    console.log("02 GNT RENDER START POST ZOOM")
+    console.log(this.props)
     return (
       <div
         ref={(input) => { this.ganttContainer = input }}

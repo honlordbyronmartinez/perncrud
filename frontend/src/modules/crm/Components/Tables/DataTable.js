@@ -22,7 +22,6 @@ class DataTable extends Component {
       })
       .catch(err => console.log(err))
     }
-
   }
 
   render() {
@@ -71,5 +70,3 @@ class DataTable extends Component {
 }
 
 export default DataTable
-
-/* const items = */

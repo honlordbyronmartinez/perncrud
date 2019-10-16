@@ -26,6 +26,7 @@ class DataTable extends Component {
   }
 
   render() {
+    console.log("DATATABLE RENDER START")
     let items = this.props && this.props.items.length > 0 ?
       this.props.items.map(item => {
         return (

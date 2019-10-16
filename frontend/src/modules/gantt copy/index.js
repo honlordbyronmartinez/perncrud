@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
+import { Container } from 'reactstrap' ;
 import Gantt from './components/Gantt';
 import Toolbar from './components/Toolbar';
 import MessageArea from './components/MessageArea';
 // import './App.css';
 
-/* static data for our gantt chart
-const data = {
-  data: [
-    { id: 1, text: 'Task #1', start_date: '2019-04-15', duration: 3, progress: 0.6 },
-    { id: 2, text: 'Task #2', start_date: '2019-04-18', duration: 3, progress: 0.9 }
-  ],
-  links: [
-    { id: 1, source: 1, target: 2, type: '0' }
-  ]
-};*/
-
-
 class charts extends Component {
   state = {
     currentZoom: 'Days',
     messages: [],
+    data: [],
+    links: [
+      { id: 1, source: 1, target: 2, type: '0' },
+      { id: 2, source: 1, target: 3, type: '1' }
+    ]
+    /*
     data: {
         data: [
           { id: 1, text: 'Task #1', start_date: '2019-04-15', duration: 3, progress: 0.6 },
@@ -30,8 +25,19 @@ class charts extends Component {
           { id: 1, source: 1, target: 2, type: '0' },
           { id: 2, source: 1, target: 3, type: '1' }
         ]
-      },
+      },*/
   };
+
+  getData(){
+    const url = "http://localhost:3000/gantt" ;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log("EE INS pre inside getdata this.setstate index.js")
+        this.setState({data})
+      })
+      .catch(err => console.log(err))
+  }
 
   addMessage(message) {
     const maxLogLength = 5;
@@ -62,8 +68,16 @@ class charts extends Component {
     });
   }
 
+  componentDidMount(){
+    console.log("YY INS cDM back in index.js")
+    this.getData()
+    console.log("ZZ INS cDM back in index.js")
+  }
+
   render() {
-    const { currentZoom, messages, data } = this.state;
+    const { currentZoom, messages, data, links } = this.state;
+    console.log("01 INS First....render index.js")
+    console.log(this.state)
     return (
       <div>
         <div className="zoom-bar">
@@ -74,7 +88,9 @@ class charts extends Component {
         </div>
         <div className="gantt-container">
           <Gantt
-            tasks={data}
+            // tasks={task}
+            data={data}
+            links={links}
             zoom={currentZoom}
             onDataUpdated={this.logDataUpdate}
           />
@@ -89,8 +105,8 @@ class charts extends Component {
 
 export default {
     routeProps: {
-        path: '/charts',
+        path: '/gantt',
         component: charts
     },
-    name: 'Charts',
+    name: 'Gantt',
 }

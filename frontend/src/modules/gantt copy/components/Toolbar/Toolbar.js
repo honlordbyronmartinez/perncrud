@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 export default class Toolbar extends Component {
   handleZoomChange = (e) => {
     if (this.props.onZoomChange) {

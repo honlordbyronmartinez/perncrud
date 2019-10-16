@@ -7,7 +7,7 @@ import shots from './shots';
 import services from './services';
 import operators from './operators';
 import tasks from './tasks';
-import charts from './charts';
+import gantt from './gantt';
 
 export default [
     crm,    
@@ -19,5 +19,5 @@ export default [
     services,
     operators,
     tasks,
-    charts
+    gantt
 ];
