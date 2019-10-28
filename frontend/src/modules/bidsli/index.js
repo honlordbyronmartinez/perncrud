@@ -11,6 +11,7 @@ import 'ag-grid-enterprise';
 class bidsli extends Component {
     state = {
         items: [],
+        rowData: [],
         columnDefs: [{
           headerName: "ID", field: "id_bidsli", sortable: true, filter: true, checkboxSelection: true
         }, {
@@ -42,6 +43,13 @@ class bidsli extends Component {
           .then(items => this.setState({items}))
           .catch(err => console.log(err))
       }
+
+      getRowData(){
+        fetch('http://localhost:3000/bidsli')
+          .then(result => result.json())
+          .then(rowData => this.setState({rowData}))
+          .catch(err => console.log(err))
+      }
     
       addItemToState = (item) => {
         this.setState(prevState => ({
@@ -69,11 +77,7 @@ class bidsli extends Component {
       }
 
       componentDidMount(){
-        this.getItems();
-        fetch('http://localhost:3000/bidsli')
-          .then(result => result.json())
-          .then(rowData => this.setState({rowData}))
-          .catch(err => console.log(err))
+        this.getRowData()
       }
 
       onButtonClick = e => {
@@ -109,7 +113,6 @@ class bidsli extends Component {
             </Row>
             <Row>
               <Col>
-                
                     <CSVLink
                       filename={"pipelinevfx_bidsli.csv"}
                       color="primary"
@@ -119,7 +122,6 @@ class bidsli extends Component {
                       Download CSV
                     </CSVLink>
                     <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
-                     
               </Col>
             </Row>
           </Container>
